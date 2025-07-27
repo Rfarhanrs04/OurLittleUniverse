@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery - Our Universe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Dancing+Script:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#ff6b9d",
+              secondary: "#a8e6cf",
+              accent: "#ffd93d",
+              dark: "#2d3748",
+              light: "#f7fafc",
+              gradient1: "#667eea",
+              gradient2: "#764ba2",
+              gradient3: "#f093fb",
+              gradient4: "#f5576c",
+            },
+            fontFamily: {
+              poppins: ["Poppins", "sans-serif"],
+              dancing: ["Dancing Script", "cursive"],
+            },
+            keyframes: {
+              zoomIn: {
+                "0%": { transform: "scale(0.8)", opacity: "0" },
+                "100%": { transform: "scale(1)", opacity: "1" },
+              },
+              slideUp: {
+                "0%": { transform: "translateY(100px)", opacity: "0" },
+                "100%": { transform: "translateY(0)", opacity: "1" },
+              },
+            },
+            animation: {
+              zoomIn: "zoomIn 0.6s ease-out forwards",
+              slideUp: "slideUp 0.8s ease-out",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .gradient-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+      .photo-card {
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.95) 0%,
+          rgba(255, 255, 255, 0.8) 100%
+        );
+        backdrop-filter: blur(20px);
+        transition: all 0.4s ease;
+        cursor: pointer;
+      }
+      .photo-card:hover {
+        transform: translateY(-10px) scale(1.05);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+      }
+      .modal {
+        backdrop-filter: blur(20px);
+        background: rgba(0, 0, 0, 0.8);
+      }
+      .masonry {
+        column-count: 3;
+        column-gap: 1.5rem;
+      }
+      @media (max-width: 768px) {
+        .masonry {
+          column-count: 2;
+        }
+      }
+      @media (max-width: 480px) {
+        .masonry {
+          column-count: 1;
+        }
+      }
+      .masonry-item {
+        break-inside: avoid;
+        margin-bottom: 1.5rem;
+      }
+    </style>
+  </head>
+  <body class="font-poppins gradient-bg min-h-screen">
+    <header class="relative py-8 px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-8">
+          <div class="relative inline-block">
+            <div
+              class="absolute -inset-4 bg-gradient-to-r from-primary to-accent rounded-full blur opacity-30 animate-pulse"
+            ></div>
+            <div class="relative bg-white rounded-full p-4 shadow-2xl">
+              <h1
+                class="font-dancing text-3xl md:text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
+              >
+                📸 Galeri Cinta
+              </h1>
+              <p class="font-poppins text-gray-600 text-sm mt-2">
+                Koleksi Foto Terindah Perjalanan Cinta Kita
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <nav class="glass-effect rounded-3xl p-4 shadow-2xl">
+          <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+            <a
+              href="index.html"
+              class="group relative px-4 py-2 text-white font-medium transition-all duration-300 hover:scale-110"
+            >
+              <div
+                class="absolute inset-0 bg-white rounded-xl opacity-0 group-hover:opacity-20 transition-opacity"
+              ></div>
+              <span class="relative">🏠 BERANDA</span>
+            </a>
+            <a
+              href="#"
+              class="group relative px-4 py-2 text-white font-medium bg-white/20 rounded-xl"
+            >
+              <span class="relative">📸 GALERI</span>
+            </a>
+            <a
+              href="kenangan.html"
+              class="group relative px-4 py-2 text-white font-medium transition-all duration-300 hover:scale-110"
+            >
+              <div
+                class="absolute inset-0 bg-white rounded-xl opacity-0 group-hover:opacity-20 transition-opacity"
+              ></div>
+              <span class="relative">💭 TIMELINE</span>
+            </a>
+            <a
+              href="tetris.html"
+              class="group relative px-4 py-2 text-white font-medium transition-all duration-300 hover:scale-110"
+            >
+              <div
+                class="absolute inset-0 bg-white rounded-xl opacity-0 group-hover:opacity-20 transition-opacity"
+              ></div>
+              <span class="relative">🎮 MINI GAME</span>
+            </a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="px-4 py-8">
+      <div class="max-w-7xl mx-auto">
+        <div class="masonry" id="gallery">
+          <div class="masonry-item photo-card rounded-3xl p-4 shadow-2xl">
+            <img
+              src="images/galeri1.png"
+              alt="Our First Date"
+              class="rounded-2xl w-full h-auto mb-4"
+            />
+            <h3 class="font-dancing text-2xl font-bold text-gray-800 mb-2">
+              Our First Date
+            </h3>
+            <p class="text-gray-600 text-sm">
+              Aku gatau ini bisa disebut first date atau bukan, tapi menurutku
+              ini salah satu pengalaman paling berharga di hidupku.
+            </p>
+            <div class="text-xs text-gray-500 mt-2">📅 03 September 2023</div>
+          </div>
+
+          <div class="masonry-item photo-card rounded-3xl p-4 shadow-2xl">
+            <img
+              src="images/galeri2.png"
+              alt="Kiara Park"
+              class="rounded-2xl w-full h-auto mb-4"
+            />
+            <h3 class="font-dancing text-2xl font-bold text-gray-800 mb-2">
+              Kiara Park
+            </h3>
+            <p class="text-gray-600 text-sm">
+              Pertama kali kita main ke kiara, main sepeda, jalan jalan, dan
+              makan di McD *maaf fotonya ga ada lagi hehe, nanti aku minta ya
+              kalau ada di hp kamu.
+            </p>
+            <div class="text-xs text-gray-500 mt-2">📅 10 September 2023</div>
+          </div>
+
+          <div class="masonry-item photo-card rounded-3xl p-4 shadow-2xl">
+            <img
+              src="images/galeri3.png"
+              alt="Mirror Selfie"
+              class="rounded-2xl w-full h-auto mb-4"
+            />
+            <h3 class="font-dancing text-2xl font-bold text-gray-800 mb-2">
+              Nonton di jatoss
+            </h3>
+            <p class="text-gray-600 text-sm">
+              ternyta dulu kita pertama kali nonotn di jatoss, tapi nonton apa
+              yaaa??
+            </p>
+            <div class="text-xs text-gray-500 mt-2">📅 21 September 2023</div>
+          </div>
+
+          <div class="masonry-item photo-card rounded-3xl p-4 shadow-2xl">
+            <img
+              src="images/galeri4.png"
+              alt="Italian Night"
+              class="rounded-2xl w-full h-auto mb-4"
+            />
+            <h3 class="font-dancing text-2xl font-bold text-gray-800 mb-2">
+              Seminar Yandex
+            </h3>
+            <p class="text-gray-600 text-sm">
+              Lucu yak kita difotoin orang hehee, kamu jiuga cnatik bgttt
+            </p>
+            <div class="text-xs text-gray-500 mt-2">📅 24 Januari 2024</div>
+          </div>
+
+          <div class="masonry-item photo-card rounded-3xl p-4 shadow-2xl">
+            <img
+              src="images/galeri5.png"
+              alt="Another Moment"
+              class="rounded-2xl w-full h-auto mb-4"
+            />
+            <h3 class="font-dancing text-2xl font-bold text-gray-800 mb-2">
+              Main Ke TSB
+            </h3>
+            <p class="text-gray-600 text-sm">
+              Salah satu momen terseru yang pernah kita laluinn, pokoknya disini
+              seru bangnettt!.
+            </p>
+            <div class="text-xs text-gray-500 mt-2">📅 31 Januari 2024</div>
+          </div>
+
+          <div class="masonry-item photo-card rounded-3xl p-4 shadow-2xl">
+            <img
+              src="images/galeri6.png"
+              alt="Another Moment"
+              class="rounded-2xl w-full h-auto mb-4"
+            />
+            <h3 class="font-dancing text-2xl font-bold text-gray-800 mb-2">
+              Main Ke KJT
+            </h3>
+            <p class="text-gray-600 text-sm">
+              Gausah ditanya, di jalarata aku sangat senang karena bisa ketemu
+              dan jala jalan sama kamuu, kita ke monas, istiqlal, kota tua, dan
+              ikea, sungguh pengalaman yang ga bisa dilupakann
+            </p>
+            <div class="text-xs text-gray-500 mt-2">📅 18 Juli 2025</div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div
+      id="photoModal"
+      class="modal fixed inset-0 z-50 flex items-center justify-center hidden"
+    >
+      <div class="relative max-w-3xl max-h-[90vh] w-full mx-4 animate-zoomIn">
+        <button
+          id="closeModal"
+          class="absolute -top-4 -right-4 w-10 h-10 bg-primary text-white rounded-full text-2xl font-bold"
+        >
+          &times;
+        </button>
+        <div class="photo-card rounded-3xl p-4">
+          <img
+            id="modalImage"
+            src=""
+            alt="Enlarged view"
+            class="rounded-2xl w-full max-h-[70vh] object-contain mb-4"
+          />
+          <h3
+            id="modalTitle"
+            class="font-dancing text-3xl font-bold text-gray-800 mb-2"
+          ></h3>
+          <p id="modalDescription" class="text-gray-600 text-sm"></p>
+          <div id="modalDate" class="text-xs text-gray-500 mt-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const gallery = document.getElementById("gallery");
+        const modal = document.getElementById("photoModal");
+        const closeModalBtn = document.getElementById("closeModal");
+        const modalImage = document.getElementById("modalImage");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalDescription = document.getElementById("modalDescription");
+        const modalDate = document.getElementById("modalDate");
+
+        gallery.addEventListener("click", (e) => {
+          const card = e.target.closest(".photo-card");
+          if (!card) return;
+
+          // Ambil data dari card yang diklik
+          const imageSrc = card.querySelector("img").src;
+          const title = card.querySelector("h3").innerText;
+          const description = card.querySelector("p").innerText;
+          const date = card.querySelector("div").innerText;
+
+          // Masukkan data ke dalam modal
+          modalImage.src = imageSrc;
+          modalTitle.innerText = title;
+          modalDescription.innerText = description;
+          modalDate.innerText = date;
+
+          // Tampilkan modal
+          modal.classList.remove("hidden");
+        });
+
+        const closeModal = () => {
+          modal.classList.add("hidden");
+        };
+
+        closeModalBtn.addEventListener("click", closeModal);
+
+        // Tutup modal jika klik di luar area gambar
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            closeModal();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

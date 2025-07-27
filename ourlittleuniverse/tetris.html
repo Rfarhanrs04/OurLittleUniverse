@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <title>Our Universe - Tetris</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Dancing+Script:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .love-gradient {
+        background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+      }
+      .card-gradient {
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.95) 0%,
+          rgba(255, 255, 255, 0.75) 100%
+        );
+        backdrop-filter: blur(20px);
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#ff6b9d",
+              secondary: "#a8e6cf",
+              dark: "#2d3748",
+              gradient1: "#667eea",
+              gradient2: "#764ba2",
+            },
+            fontFamily: {
+              poppins: ["Poppins", "sans-serif"],
+              dancing: ["Dancing Script", "cursive"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-gradient-to-br from-gradient1 to-gradient2 min-h-screen flex items-center justify-center font-poppins relative p-2"
+  >
+    <div
+      class="card-gradient rounded-3xl p-4 sm:p-6 shadow-2xl text-center w-full max-w-sm mx-auto"
+    >
+      <h1 class="font-dancing text-4xl font-bold text-gray-800 mb-2">
+        Tetris Time!
+      </h1>
+      <p class="text-gray-600 mb-4 text-sm">Capai 100 poin untuk menang! ❤️</p>
+
+      <div
+        class="my-4 grid grid-cols-2 gap-4 text-gray-800 font-bold text-base sm:text-lg"
+      >
+        <div class="bg-gray-200/50 p-2 rounded-lg">
+          <p class="text-sm text-gray-600">SCORE</p>
+          <span id="score" class="text-primary text-2xl">0</span>
+        </div>
+        <div class="bg-gray-200/50 p-2 rounded-lg">
+          <p class="text-sm text-gray-600">HIGH SCORE</p>
+          <span id="high-score" class="text-secondary text-2xl">0</span>
+        </div>
+      </div>
+
+      <div id="tetris-game" class="mx-auto flex flex-col items-center">
+        <canvas
+          id="tetris-canvas"
+          width="300"
+          height="600"
+          class="bg-dark rounded-lg shadow-inner border-4 border-gray-700"
+        ></canvas>
+
+        <div
+          id="on-screen-controls"
+          class="mt-4 grid grid-cols-3 grid-rows-2 gap-2 w-full max-w-[240px]"
+        >
+          <div class="col-span-3 flex justify-center">
+            <button
+              id="rotate-btn"
+              class="w-16 h-16 bg-gray-800 text-white text-3xl rounded-xl shadow-lg active:scale-95 transition-transform select-none"
+            >
+              🔄
+            </button>
+          </div>
+          <button
+            id="left-btn"
+            class="w-16 h-16 bg-gray-800 text-white text-3xl rounded-xl shadow-lg active:scale-95 transition-transform select-none"
+          >
+            ←
+          </button>
+          <button
+            id="down-btn"
+            class="w-16 h-16 bg-gray-800 text-white text-3xl rounded-xl shadow-lg active:scale-95 transition-transform select-none"
+          >
+            ↓
+          </button>
+          <button
+            id="right-btn"
+            class="w-16 h-16 bg-gray-800 text-white text-3xl rounded-xl shadow-lg active:scale-95 transition-transform select-none"
+          >
+            →
+          </button>
+        </div>
+
+        <a
+          href="index.html"
+          class="mt-4 text-gray-600 hover:text-black transition text-sm"
+          >Kembali ke Beranda</a
+        >
+      </div>
+    </div>
+
+    <div
+      id="message-modal"
+      class="hidden absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center text-center p-4 z-50"
+    >
+      <div
+        class="bg-white rounded-2xl p-8 shadow-2xl max-w-md transform transition-all scale-95 opacity-0"
+        id="message-box"
+      >
+        <h2
+          id="message-title"
+          class="text-4xl font-bold font-dancing mb-4"
+        ></h2>
+        <p id="message-text" class="text-gray-600 text-lg mb-6"></p>
+        <button
+          id="restart-button"
+          class="px-8 py-3 love-gradient text-white font-bold rounded-lg hover:scale-105 transition-all shadow-lg"
+        >
+          Main Lagi
+        </button>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const canvas = document.getElementById("tetris-canvas");
+        if (!canvas) return;
+
+        const context = canvas.getContext("2d");
+        const scoreElement = document.getElementById("score");
+        const highScoreElement = document.getElementById("high-score");
+
+        // Modal elements
+        const messageModal = document.getElementById("message-modal");
+        const messageBox = document.getElementById("message-box");
+        const messageTitle = document.getElementById("message-title");
+        const messageText = document.getElementById("message-text");
+        const restartButton = document.getElementById("restart-button");
+
+        // On-screen control buttons
+        const rotateBtn = document.getElementById("rotate-btn");
+        const leftBtn = document.getElementById("left-btn");
+        const downBtn = document.getElementById("down-btn");
+        const rightBtn = document.getElementById("right-btn");
+
+        const COLS = 10;
+        const ROWS = 20;
+        const BLOCK_SIZE = 30;
+        const WINNING_SCORE = 100;
+
+        const COLORS = {
+          I: "#a8e6cf",
+          O: "#ffd93d",
+          T: "#764ba2",
+          L: "#f5576c",
+          J: "#667eea",
+          S: "#f093fb",
+          Z: "#ff6b9d",
+        };
+        const PIECES = {
+          I: [[1, 1, 1, 1]],
+          O: [
+            [1, 1],
+            [1, 1],
+          ],
+          T: [
+            [0, 1, 0],
+            [1, 1, 1],
+          ],
+          L: [
+            [0, 0, 1],
+            [1, 1, 1],
+          ],
+          J: [
+            [1, 0, 0],
+            [1, 1, 1],
+          ],
+          S: [
+            [0, 1, 1],
+            [1, 1, 0],
+          ],
+          Z: [
+            [1, 1, 0],
+            [0, 1, 1],
+          ],
+        };
+
+        let board,
+          score,
+          highScore,
+          dropCounter,
+          dropInterval,
+          lastTime,
+          gameOver,
+          animationFrameId;
+        let player = { pos: { x: 0, y: 0 }, matrix: null, color: null };
+
+        function loadHighScore() {
+          highScore = localStorage.getItem("tetrisHighScore") || 0;
+          highScoreElement.textContent = highScore;
+        }
+
+        function updateHighScore() {
+          if (score > highScore) {
+            highScore = score;
+            localStorage.setItem("tetrisHighScore", highScore);
+            highScoreElement.textContent = highScore;
+            return true; // Indicates new high score
+          }
+          return false;
+        }
+
+        function startGame() {
+          board = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
+          score = 0;
+          gameOver = false;
+          dropInterval = 1000;
+          scoreElement.textContent = score;
+          loadHighScore();
+
+          messageModal.classList.add("hidden");
+          messageBox.classList.add("scale-95", "opacity-0");
+
+          playerReset();
+          if (animationFrameId) cancelAnimationFrame(animationFrameId);
+          update();
+        }
+
+        function showModal(title, text) {
+          gameOver = true;
+          cancelAnimationFrame(animationFrameId);
+
+          let finalMessage = text;
+          if (updateHighScore()) {
+            finalMessage +=
+              "<br><br>✨ **Selamat, kamu mencetak Skor Tertinggi baru!** ✨";
+          }
+
+          messageTitle.textContent = title;
+          messageText.innerHTML = finalMessage;
+          messageModal.classList.remove("hidden");
+          setTimeout(() => {
+            messageBox.classList.remove("scale-95", "opacity-0");
+          }, 50);
+        }
+
+        function playerReset() {
+          const pieces = "IOTSZJL";
+          const randPiece = pieces[Math.floor(Math.random() * pieces.length)];
+          player.matrix = PIECES[randPiece];
+          player.color = COLORS[randPiece];
+          player.pos.y = 0;
+          player.pos.x = ((COLS / 2) | 0) - ((player.matrix[0].length / 2) | 0);
+          if (collide(board, player)) {
+            showModal(
+              "Kamu Kalah 👎",
+              "Jangan sedih, cinta kita tak akan pernah game over. <br>Ayo coba lagi!"
+            );
+          }
+        }
+
+        function draw() {
+          context.fillStyle = "#2d3748";
+          context.fillRect(0, 0, canvas.width, canvas.height);
+          board.forEach((row, y) => {
+            row.forEach((value, x) => {
+              if (value !== 0) {
+                context.fillStyle = value;
+                context.fillRect(x, y, 1, 1);
+              }
+            });
+          });
+          if (player.matrix) {
+            player.matrix.forEach((row, y) => {
+              row.forEach((value, x) => {
+                if (value !== 0) {
+                  context.fillStyle = player.color;
+                  context.fillRect(x + player.pos.x, y + player.pos.y, 1, 1);
+                }
+              });
+            });
+          }
+        }
+
+        function merge() {
+          player.matrix.forEach((row, y) => {
+            row.forEach((value, x) => {
+              if (value !== 0) {
+                board[y + player.pos.y][x + player.pos.x] = player.color;
+              }
+            });
+          });
+        }
+
+        function collide(board, player) {
+          const [m, o] = [player.matrix, player.pos];
+          for (let y = 0; y < m.length; ++y) {
+            for (let x = 0; x < m[y].length; ++x) {
+              if (
+                m[y][x] !== 0 &&
+                (board[y + o.y] && board[y + o.y][x + o.x]) !== 0
+              ) {
+                return true;
+              }
+            }
+          }
+          return false;
+        }
+
+        function rotate() {
+          if (gameOver) return;
+          const originalMatrix = JSON.parse(JSON.stringify(player.matrix));
+          const originalX = player.pos.x;
+          const transposed = originalMatrix[0].map((_, colIndex) =>
+            originalMatrix.map((row) => row[colIndex])
+          );
+          player.matrix = transposed.map((row) => row.reverse());
+
+          if (!collide(board, player)) return;
+
+          let offset = 1;
+          while (collide(board, player)) {
+            player.pos.x += offset;
+            offset = -(offset + (offset > 0 ? 1 : -1));
+
+            if (Math.abs(offset) > player.matrix[0].length + 1) {
+              player.matrix = originalMatrix;
+              player.pos.x = originalX;
+              return;
+            }
+          }
+        }
+
+        function playerDrop() {
+          if (gameOver) return;
+          player.pos.y++;
+          if (collide(board, player)) {
+            player.pos.y--;
+            merge();
+            boardSweep();
+            playerReset();
+          }
+          dropCounter = 0;
+        }
+
+        function playerMove(dir) {
+          if (gameOver) return;
+          player.pos.x += dir;
+          if (collide(board, player)) {
+            player.pos.x -= dir;
+          }
+        }
+
+        function boardSweep() {
+          let rowCount = 1;
+          outer: for (let y = board.length - 1; y > -1; --y) {
+            for (let x = 0; x < board[y].length; ++x) {
+              if (board[y][x] === 0) continue outer;
+            }
+            const row = board.splice(y, 1)[0].fill(0);
+            board.unshift(row);
+            y++;
+            score += rowCount * 10;
+            rowCount *= 2;
+          }
+          scoreElement.textContent = score;
+          if (score >= WINNING_SCORE) {
+            showModal(
+              "Kamu Menang! 🎉",
+              "Seperti kamu yang memenangkan hatiku, kamu juga memenangkan game ini. Hebat!"
+            );
+          }
+        }
+
+        function update(time = 0) {
+          if (gameOver) return;
+          const deltaTime = time - (lastTime || 0);
+          lastTime = time;
+          dropCounter = (dropCounter || 0) + deltaTime;
+          if (dropCounter > dropInterval) {
+            playerDrop();
+          }
+          draw();
+          animationFrameId = requestAnimationFrame(update);
+        }
+
+        // Keyboard Controls
+        document.addEventListener("keydown", (event) => {
+          if (gameOver) return;
+          if (event.key === "ArrowLeft") playerMove(-1);
+          else if (event.key === "ArrowRight") playerMove(1);
+          else if (event.key === "ArrowDown") playerDrop();
+          else if (event.key === "ArrowUp") rotate();
+        });
+
+        // On-screen Button Controls
+        leftBtn.addEventListener("click", () => playerMove(-1));
+        rightBtn.addEventListener("click", () => playerMove(1));
+        downBtn.addEventListener("click", () => playerDrop());
+        rotateBtn.addEventListener("click", () => rotate());
+
+        restartButton.addEventListener("click", startGame);
+        context.scale(BLOCK_SIZE, BLOCK_SIZE);
+        startGame();
+      });
+    </script>
+  </body>
+</html>

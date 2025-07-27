@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Universe - Love Story</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Dancing+Script:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#ff6b9d",
+              secondary: "#a8e6cf",
+              accent: "#e0c307",
+              dark: "#2d3748",
+              light: "#f7fafc",
+              gradient1: "#667eea",
+              gradient2: "#764ba2",
+              gradient3: "#f093fb",
+              gradient4: "#f5576c",
+            },
+            fontFamily: {
+              poppins: ["Poppins", "sans-serif"],
+              dancing: ["Dancing Script", "cursive"],
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0px)" },
+                "50%": { transform: "translateY(-20px)" },
+              },
+              pulse: {
+                "0%, 100%": { opacity: "1" },
+                "50%": { opacity: ".8" },
+              },
+              heartbeat: {
+                "0%, 100%": { transform: "scale(1)" },
+                "14%": { transform: "scale(1.2)" },
+                "28%": { transform: "scale(1)" },
+                "42%": { transform: "scale(1.2)" },
+                "70%": { transform: "scale(1)" },
+              },
+              slideInUp: {
+                "0%": { transform: "translateY(100px)", opacity: "0" },
+                "100%": { transform: "translateY(0)", opacity: "1" },
+              },
+              fadeIn: {
+                "0%": { opacity: "0" },
+                "100%": { opacity: "1" },
+              },
+              sparkle: {
+                "0%, 100%": {
+                  transform: "scale(0) rotate(0deg)",
+                  opacity: "0",
+                },
+                "50%": { transform: "scale(1) rotate(180deg)", opacity: "1" },
+              },
+            },
+            animation: {
+              float: "float 6s ease-in-out infinite",
+              pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+              heartbeat: "heartbeat 1.5s ease-in-out infinite",
+              slideInUp: "slideInUp 0.8s ease-out",
+              fadeIn: "fadeIn 1s ease-in",
+              sparkle: "sparkle 1.5s ease-in-out infinite",
+            },
+            backdropBlur: {
+              xs: "2px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .gradient-bg {
+        background: linear-gradient(135deg, #667eea 0%, #d73dc2 100%);
+      }
+
+      .card-gradient {
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.9) 0%,
+          rgba(255, 255, 255, 0.7) 100%
+        );
+        backdrop-filter: blur(20px);
+      }
+
+      .love-gradient {
+        background: linear-gradient(45deg, #ff8ed2 0%, #fff347 100%);
+      }
+
+      .sparkle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #ffd93d;
+        border-radius: 50%;
+      }
+
+      .floating-hearts {
+        position: fixed;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      @keyframes float-heart {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100px) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      .floating-heart {
+        animation: float-heart 8s linear infinite;
+      }
+    </style>
+  </head>
+  <body class="font-poppins gradient-bg min-h-screen overflow-x-hidden">
+    <div class="floating-hearts"></div>
+
+    <div class="fixed inset-0 pointer-events-none z-10">
+      <div
+        class="sparkle animate-sparkle"
+        style="top: 20%; left: 10%; animation-delay: 0s"
+      ></div>
+      <div
+        class="sparkle animate-sparkle"
+        style="top: 60%; left: 80%; animation-delay: 0.5s"
+      ></div>
+      <div
+        class="sparkle animate-sparkle"
+        style="top: 30%; left: 70%; animation-delay: 1s"
+      ></div>
+      <div
+        class="sparkle animate-sparkle"
+        style="top: 80%; left: 20%; animation-delay: 1.5s"
+      ></div>
+    </div>
+
+    <div class="relative z-20">
+      <header class="relative py-8 px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-12 animate-slideInUp">
+            <div class="relative inline-block">
+              <div
+                class="absolute -inset-4 bg-gradient-to-r from-primary to-accent rounded-full blur opacity-30 animate-pulse"
+              ></div>
+              <div class="relative bg-white rounded-full p-6 shadow-2xl">
+                <h1
+                  class="font-dancing text-4xl md:text-6xl font-bold love-gradient bg-clip-text text-transparent"
+                >
+                  Our Universe
+                </h1>
+                <p class="font-poppins text-gray-600 text-sm md:text-base mt-2">
+                  ✨ Where Love Stories Begin ✨
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <nav class="glass-effect rounded-3xl p-6 shadow-2xl animate-fadeIn">
+            <div class="flex flex-wrap justify-center gap-6 md:gap-8">
+              <a
+                href="#"
+                class="group relative px-6 py-3 text-white font-medium transition-all duration-300 hover:scale-110"
+              >
+                <div
+                  class="absolute inset-0 bg-white rounded-xl opacity-0 group-hover:opacity-20 transition-opacity"
+                ></div>
+                <span class="relative">🏠 BERANDA</span>
+              </a>
+              <a
+                href="gallery.html"
+                class="group relative px-6 py-3 text-white font-medium transition-all duration-300 hover:scale-110"
+              >
+                <div
+                  class="absolute inset-0 bg-white rounded-xl opacity-0 group-hover:opacity-20 transition-opacity"
+                ></div>
+                <span class="relative">📸 GALERI</span>
+              </a>
+              <a
+                href="kenangan.html"
+                class="group relative px-6 py-3 text-white font-medium transition-all duration-300 hover:scale-110"
+              >
+                <div
+                  class="absolute inset-0 bg-white rounded-xl opacity-0 group-hover:opacity-20 transition-opacity"
+                ></div>
+                <span class="relative">💭 TIMELINE</span>
+              </a>
+
+              <a
+                href="tetris.html"
+                class="group relative px-6 py-3 text-white font-medium transition-all duration-300 hover:scale-110"
+              >
+                <div
+                  class="absolute inset-0 bg-white rounded-xl opacity-0 group-hover:opacity-20 transition-opacity"
+                ></div>
+                <span class="relative">🎮 MINI GAME</span>
+              </a>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      <main class="px-4 py-12">
+        <div class="max-w-4xl mx-auto mb-12 animate-fadeIn">
+          <div class="glass-effect rounded-3xl p-8 text-center shadow-2xl">
+            <h2
+              class="font-dancing text-4xl md:text-5xl font-bold love-gradient bg-clip-text text-transparent mb-4"
+            >
+              Our Love Journey So Far
+            </h2>
+            <p class="text-white text-lg md:text-xl font-medium mb-2">
+              Bertemu sejak
+              <span class="font-bold text-accent">20 Agustus 2023</span>
+            </p>
+            <div
+              class="text-white text-2xl md:text-3xl font-bold"
+              id="time-since-we-meet-days"
+            ></div>
+            <div
+              class="text-white/80 text-lg md:text-xl mt-2"
+              id="time-since-we-meet-hours"
+            ></div>
+          </div>
+        </div>
+        <div class="max-w-4xl mx-auto mb-12 animate-fadeIn">
+          <div class="glass-effect rounded-3xl p-8 shadow-2xl">
+            <h2
+              class="font-dancing text-4xl md:text-5xl font-bold love-gradient bg-clip-text text-transparent text-center mb-8"
+            >
+              Na's Favorite Things
+            </h2>
+
+            <div class="space-y-6 text-white/90">
+              <div>
+                <h3 class="font-semibold text-xl text-accent mb-2">
+                  Makanan & Minuman:
+                </h3>
+                <ul class="list-disc list-inside ml-4 space-y-1">
+                  <li>
+                    <span class="font-medium">Makanan Favorit:</span> Baso ikan,
+                    Es krim, Seblak, Soto, Alpukat
+                  </li>
+                  <li>
+                    <span class="font-medium">Minuman Favorit:</span> Origano,
+                    Matcha, Es Jeruk
+                  </li>
+                  <li>
+                    <span class="font-medium">Restoran/Kafe Favorit:</span>
+                    Baso samping UPI, Baso Solo, Seblak teteh, Sate Damri
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 class="font-semibold text-xl text-accent mb-2">
+                  Hobi & Minat:
+                </h3>
+                <ul class="list-disc list-inside ml-4 space-y-1">
+                  <li>
+                    <span class="font-medium">Hobi & Minat:</span> Membaca,
+                    Melukis, Membuat kreasi, Menonton, Public speaking, dan
+                    Mengeksplor hal baru
+                  </li>
+                  <li>
+                    <span class="font-medium">Buku/Genre Buku Favorit:</span>
+                    Fiksi fantasi, Self-improvement
+                  </li>
+                  <li>
+                    <span class="font-medium">Film/Serial TV Favorit:</span>
+                    Drama Korea, Film action, Film sedih, Film romantis komedi
+                  </li>
+                  <li>
+                    <span class="font-medium"
+                      >Musik/Artis/Genre Musik Favorit:</span
+                    >
+                    Feby Putri, Taylor Swift
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 class="font-semibold text-xl text-accent mb-2">
+                  Gaya Hidup & Keseharian:
+                </h3>
+                <ul class="list-disc list-inside ml-4 space-y-1">
+                  <li>
+                    <span class="font-medium">Warna Favorit:</span> Pink dan
+                    warna-warna Pastel
+                  </li>
+                  <li>
+                    <span class="font-medium">Tempat Favorit:</span> Pantai, dan
+                    tempat yang nyaman
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 class="font-semibold text-xl text-accent mb-2">
+                  Hal-hal Kecil yang Disukai:
+                </h3>
+                <ul class="list-disc list-inside ml-4 space-y-1">
+                  <li>
+                    <span class="font-medium">Bunga Favorit:</span> Mawar
+                    (klasik dan indah), atau Peony (mekar besar dan harum)
+                  </li>
+                  <li><span class="font-medium">Aroma Favorit:</span> Manis</li>
+                  <li>
+                    <span class="font-medium">Aktivitas Unik:</span> Main
+                    hujan-hujanan
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 class="font-semibold text-xl text-accent mb-2">
+                  Orang & Hubungan:
+                </h3>
+                <ul class="list-disc list-inside ml-4 space-y-1">
+                  <li>
+                    <span class="font-medium"
+                      >Kenangan Favorit Bersama (Anda):</span
+                    >
+                    First date ke Museum, Main ke TSB, Hari saat Adis ulang
+                    tahun
+                  </li>
+                  <li>
+                    <span class="font-medium"
+                      >Kualitas yang Disukai dari Orang Lain:</span
+                    >
+                    Kejujuran, Kebaikan, atau Perhatian
+                  </li>
+                  <li>
+                    <span class="font-medium">Love Language:</span> Physical
+                    touch, Receiving Gift, Act of Service
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="max-w-6xl mx-auto">
+          <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="relative">
+              <div
+                class="card-gradient rounded-3xl p-8 shadow-2xl animate-slideInUp transform hover:scale-105 transition-all duration-500"
+              >
+                <div class="relative" style="min-height: 450px">
+                  <div
+                    class="slide absolute inset-0 transition-all duration-700 ease-in-out"
+                  >
+                    <div class="text-center">
+                      <div class="relative inline-block mb-8">
+                        <div
+                          class="absolute -inset-2 bg-gradient-to-r from-primary to-secondary rounded-full opacity-30 animate-pulse"
+                        ></div>
+                        <div
+                          class="relative w-48 h-48 mx-auto rounded-full love-gradient p-1"
+                        >
+                          <div
+                            class="w-full h-full rounded-full bg-white overflow-hidden"
+                          >
+                            <img
+                              src="images/image.png"
+                              class="w-full h-full object-cover"
+                              alt="Our special moment"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <h2
+                        class="font-dancing text-4xl font-bold text-gray-800 mb-4"
+                      >
+                        Selamat Datang di Dunia Kita!
+                      </h2>
+                      <p
+                        class="text-lg text-gray-600 italic font-medium leading-relaxed"
+                      >
+                        "Setiap hari bersamamu adalah petualangan terindah yang
+                        tak akan pernah berakhir ✨"
+                      </p>
+                    </div>
+                  </div>
+
+                  <div
+                    class="slide absolute inset-0 transition-all duration-700 ease-in-out opacity-0"
+                  >
+                    <div class="text-center">
+                      <div class="relative inline-block mb-8">
+                        <div
+                          class="absolute -inset-2 bg-gradient-to-r from-accent to-primary rounded-full opacity-30 animate-pulse"
+                        ></div>
+                        <div
+                          class="relative w-48 h-48 mx-auto rounded-full love-gradient p-1"
+                        >
+                          <div
+                            class="w-full h-full rounded-full bg-white overflow-hidden"
+                          >
+                            <img
+                              src="images/image2.png"
+                              class="w-full h-full object-cover"
+                              alt="Our special moment"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <h2
+                        class="font-dancing text-4xl font-bold text-gray-800 mb-4"
+                      >
+                        Momen Bersama
+                      </h2>
+                      <p
+                        class="text-lg text-gray-600 italic font-medium leading-relaxed"
+                      >
+                        "Semua Momen tak akan pernah terlupakan, awal dari kisah
+                        cinta kita "
+                      </p>
+                    </div>
+                  </div>
+
+                  <div
+                    class="slide absolute inset-0 transition-all duration-700 ease-in-out opacity-0"
+                  >
+                    <div class="text-center">
+                      <div class="relative inline-block mb-8">
+                        <div
+                          class="absolute -inset-2 bg-gradient-to-r from-secondary to-accent rounded-full opacity-30 animate-pulse"
+                        ></div>
+                        <div
+                          class="relative w-48 h-48 mx-auto rounded-full love-gradient p-1"
+                        >
+                          <div
+                            class="w-full h-full rounded-full bg-white overflow-hidden"
+                          >
+                            <img
+                              src="images/image3.png"
+                              class="w-full h-full object-cover"
+                              alt="Our special moment"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <h2
+                        class="font-dancing text-4xl font-bold text-gray-800 mb-4"
+                      >
+                        Main ke Jakarta
+                      </h2>
+                      <p
+                        class="text-lg text-gray-600 italic font-medium leading-relaxed"
+                      >
+                        "Panas Ibukota tidak menghilangkan rasa bahagiaku saat
+                        bersamamu"
+                      </p>
+                    </div>
+                  </div>
+
+                  <button
+                    class="slider-btn prev absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 rounded-full shadow-lg flex items-center justify-center text-xl text-gray-700 hover:bg-white hover:scale-110 transition-all duration-300"
+                  >
+                    ←
+                  </button>
+                  <button
+                    class="slider-btn next absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 rounded-full shadow-lg flex items-center justify-center text-xl text-gray-700 hover:bg-white hover:scale-110 transition-all duration-300"
+                  >
+                    →
+                  </button>
+                </div>
+
+                <div
+                  class="dots-container flex justify-center gap-3 mt-8"
+                ></div>
+              </div>
+            </div>
+
+            <div
+              class="flex flex-col items-center justify-center animate-slideInUp"
+              style="animation-delay: 0.3s"
+            >
+              <div class="relative mb-8">
+                <div
+                  class="absolute inset-0 rounded-full border-2 border-primary/30 animate-ping"
+                ></div>
+                <div
+                  class="absolute inset-4 rounded-full border-2 border-secondary/30 animate-ping"
+                  style="animation-delay: 0.5s"
+                ></div>
+
+                <svg
+                  id="interactive-heart"
+                  class="cursor-pointer hover:scale-110 transition-all duration-300 drop-shadow-2xl animate-float"
+                  viewBox="0 0 200 180"
+                  width="300"
+                  height="270"
+                >
+                  <defs>
+                    <filter id="glow">
+                      <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+                      <feMerge>
+                        <feMergeNode in="coloredBlur" />
+                        <feMergeNode in="SourceGraphic" />
+                      </feMerge>
+                    </filter>
+                    <linearGradient
+                      id="heartGradient1"
+                      x1="0%"
+                      y1="0%"
+                      x2="100%"
+                      y2="100%"
+                    >
+                      <stop
+                        offset="0%"
+                        style="stop-color: #ff6b9d; stop-opacity: 1"
+                      />
+                      <stop
+                        offset="100%"
+                        style="stop-color: #f5576c; stop-opacity: 1"
+                      />
+                    </linearGradient>
+                    <linearGradient
+                      id="heartGradient2"
+                      x1="0%"
+                      y1="0%"
+                      x2="100%"
+                      y2="100%"
+                    >
+                      <stop
+                        offset="0%"
+                        style="stop-color: #a8e6cf; stop-opacity: 1"
+                      />
+                      <stop
+                        offset="100%"
+                        style="stop-color: #667eea; stop-opacity: 1"
+                      />
+                    </linearGradient>
+                    <linearGradient
+                      id="heartGradient3"
+                      x1="0%"
+                      y1="0%"
+                      x2="100%"
+                      y2="100%"
+                    >
+                      <stop
+                        offset="0%"
+                        style="stop-color: #ffd93d; stop-opacity: 1"
+                      />
+                      <stop
+                        offset="100%"
+                        style="stop-color: #f093fb; stop-opacity: 1"
+                      />
+                    </linearGradient>
+                  </defs>
+
+                  <path
+                    class="stroke-white stroke-4 transition-all duration-300"
+                    fill="url(#heartGradient1)"
+                    filter="url(#glow)"
+                    d="M100 160 l-12 -11 c-33 -30 -55 -52 -55 -80 c0 -22 18 -40 40 -40 c15 0 28 8 35 20 c7 -12 20 -20 35 -20 c22 0 40 18 40 40 c0 28 -22 50 -55 80 l-12 11z"
+                  />
+                  <path
+                    class="stroke-white stroke-3 transition-all duration-300"
+                    fill="url(#heartGradient2)"
+                    d="M100 160 l-12 -11 c-33 -30 -55 -52 -55 -80 c0 -22 18 -40 40 -40 c15 0 28 8 35 20 c7 -12 20 -20 35 -20 c22 0 40 18 40 40 c0 28 -22 50 -55 80 l-12 11z"
+                    transform="scale(0.7) translate(42, 45)"
+                  />
+                  <path
+                    class="stroke-white stroke-2 transition-all duration-300"
+                    fill="url(#heartGradient3)"
+                    d="M100 160 l-12 -11 c-33 -30 -55 -52 -55 -80 c0 -22 18 -40 40 -40 c15 0 28 8 35 20 c7 -12 20 -20 35 -20 c22 0 40 18 40 40 c0 28 -22 50 -55 80 l-12 11z"
+                    transform="scale(0.4) translate(150, 110)"
+                  />
+                </svg>
+              </div>
+
+              <div class="text-center">
+                <p
+                  class="font-dancing text-2xl font-semibold text-white mb-2 animate-pulse"
+                >
+                  Tap with Love 💖
+                </p>
+                <p class="text-white/80 text-sm">
+                  Klik hati untuk merasakan magic-nya!
+                </p>
+              </div>
+
+              <div class="mt-8 glass-effect rounded-2xl p-6 text-center">
+                <p class="text-white font-medium mb-2">Love Clicks</p>
+                <div class="text-3xl font-bold text-accent" id="loveCounter">
+                  0
+                </div>
+              </div>
+            </div>
+            <div class="mt-8 glass-effect rounded-2xl p-6 text-center">
+              <h3
+                class="font-dancing text-3xl font-bold love-gradient bg-clip-text text-transparent mb-4"
+              >
+                Read Me When You Need Me
+              </h3>
+              <a
+                href="YOUR_REDIRECT_LINK_HERE"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-block transform transition-transform duration-300 hover:scale-105"
+              >
+                <img
+                  src="images/buku.png"
+                  alt="Read Me When You Need Me Book"
+                  class="mx-auto rounded-lg shadow-xl w-48 md:w-64"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="text-center py-12 mt-16">
+        <div class="glass-effect rounded-3xl p-8 max-w-2xl mx-auto">
+          <p class="text-white font-medium mb-4">
+            ✨ Made with infinite love and countless coffee ✨
+          </p>
+          <p class="text-white/70 text-sm">
+            &copy; 2025 Aan. Every pixel crafted with love❤️
+          </p>
+        </div>
+      </footer>
+    </div>
+
+    <div
+      id="comingSoonModal"
+      class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black bg-opacity-50"
+    >
+      <div
+        class="glass-effect rounded-3xl p-8 text-center shadow-2xl max-w-sm mx-4"
+      >
+        <h2
+          class="font-dancing text-4xl font-bold love-gradient bg-clip-text text-transparent mb-4"
+        >
+          Coming Soon!
+        </h2>
+        <p class="text-white text-lg mb-6">
+          Fitur ini sedang dalam persiapan. Nantikan ya! 😊
+        </p>
+        <button
+          id="closeModalBtn"
+          class="px-6 py-2 bg-primary text-white font-semibold rounded-full hover:scale-105 transition-transform duration-300"
+        >
+          Tutup
+        </button>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Enhanced Slider functionality
+        const slides = document.querySelectorAll(".slide");
+        const nextBtn = document.querySelector(".next");
+        const prevBtn = document.querySelector(".prev");
+        const dotsContainer = document.querySelector(".dots-container");
+        let currentIndex = 0;
+        const totalSlides = slides.length;
+
+        // Create enhanced dots
+        for (let i = 0; i < totalSlides; i++) {
+          const dot = document.createElement("div");
+          dot.className =
+            "dot w-3 h-3 rounded-full cursor-pointer transition-all duration-300 bg-white/40 hover:bg-white/60";
+          dot.dataset.index = i;
+          dotsContainer.appendChild(dot);
+        }
+
+        const dots = document.querySelectorAll(".dot");
+
+        function updateSlider(index) {
+          slides.forEach((slide, i) => {
+            if (i === index) {
+              slide.classList.remove("opacity-0");
+              slide.classList.add("opacity-100");
+            } else {
+              slide.classList.remove("opacity-100");
+              slide.classList.add("opacity-0");
+            }
+          });
+
+          dots.forEach((dot, i) => {
+            if (i === index) {
+              dot.classList.remove("bg-white/40");
+              dot.classList.add("bg-white", "scale-125");
+            } else {
+              dot.classList.remove("bg-white", "scale-125");
+              dot.classList.add("bg-white/40");
+            }
+          });
+
+          currentIndex = index;
+        }
+
+        nextBtn.addEventListener("click", () =>
+          updateSlider((currentIndex + 1) % totalSlides)
+        );
+
+        prevBtn.addEventListener("click", () =>
+          updateSlider((currentIndex - 1 + totalSlides) % totalSlides)
+        );
+
+        dots.forEach((dot) => {
+          dot.addEventListener("click", (e) =>
+            updateSlider(parseInt(e.target.dataset.index))
+          );
+        });
+
+        // Auto-slide functionality
+        setInterval(() => {
+          updateSlider((currentIndex + 1) % totalSlides);
+        }, 5000);
+
+        updateSlider(0);
+
+        // Enhanced heart interaction
+        const heart = document.getElementById("interactive-heart");
+        const loveCounter = document.getElementById("loveCounter");
+        let clickCount = parseInt(localStorage.getItem("loveClicks") || "0");
+        loveCounter.textContent = clickCount;
+
+        heart.addEventListener("click", (e) => {
+          // Prevent multiple rapid clicks
+          if (heart.classList.contains("animate-heartbeat")) return;
+
+          // Add heartbeat animation
+          heart.classList.add("animate-heartbeat");
+
+          // Increment counter
+          clickCount++;
+          loveCounter.textContent = clickCount;
+          localStorage.setItem("loveClicks", clickCount.toString());
+
+          // Check if the click count has reached 17
+          if (clickCount === 7) {
+            // Redirect to your desired link
+            window.location.href =
+              "https://www.canva.com/design/DAGuUCo1ebQ/uiQ6Y8xGYh0ozJNTNUDHaw/watch?utm_content=DAGuUCo1ebQ&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h8974d92ad7";
+          }
+          // Create floating hearts
+          createFloatingHeart(e.pageX, e.pageY);
+
+          // Remove animation after completion
+          setTimeout(() => {
+            heart.classList.remove("animate-heartbeat");
+          }, 1500);
+        });
+
+        // Floating hearts function
+        function createFloatingHeart(x, y) {
+          const heart = document.createElement("div");
+          heart.innerHTML = "💖";
+          heart.style.position = "fixed";
+          heart.style.left = x + "px";
+          heart.style.top = y + "px";
+          heart.style.fontSize = "24px";
+          heart.style.pointerEvents = "none";
+          heart.style.zIndex = "1000";
+          heart.style.animation = "float-heart 3s ease-out forwards";
+
+          document.body.appendChild(heart);
+
+          setTimeout(() => {
+            heart.remove();
+          }, 3000);
+        }
+
+        // Background floating hearts
+        function createBackgroundHeart() {
+          const heartsContainer = document.querySelector(".floating-hearts");
+          const heart = document.createElement("div");
+          heart.innerHTML = Math.random() > 0.5 ? "💕" : "💖";
+          heart.className = "floating-heart";
+          heart.style.left = Math.random() * 100 + "vw";
+          heart.style.fontSize = Math.random() * 10 + 15 + "px";
+          heart.style.animationDuration = Math.random() * 4 + 6 + "s";
+          heart.style.opacity = Math.random() * 0.3 + 0.1;
+
+          heartsContainer.appendChild(heart);
+
+          setTimeout(() => {
+            heart.remove();
+          }, 10000);
+        }
+
+        // Create background hearts periodically
+        setInterval(createBackgroundHeart, 3000);
+
+        // Calculate and display time since "we meet"
+        const meetDate = new Date("2023-08-20T00:00:00"); // August 20, 2023 at 00:00:00
+        const timeSinceWeMeetDaysElement = document.getElementById(
+          "time-since-we-meet-days"
+        );
+        const timeSinceWeMeetHoursElement = document.getElementById(
+          "time-since-we-meet-hours"
+        );
+
+        function updateTimeSinceMeet() {
+          const now = new Date();
+          const diffMs = now.getTime() - meetDate.getTime(); // Difference in milliseconds
+
+          const totalDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+          const remainingMs = diffMs % (1000 * 60 * 60 * 24);
+
+          const hours = Math.floor(remainingMs / (1000 * 60 * 60));
+          const minutes = Math.floor(
+            (remainingMs % (1000 * 60 * 60)) / (1000 * 60)
+          );
+          const seconds = Math.floor((remainingMs % (1000 * 60)) / 1000);
+
+          if (timeSinceWeMeetDaysElement) {
+            timeSinceWeMeetDaysElement.textContent = `${totalDays} Hari`;
+          }
+          if (timeSinceWeMeetHoursElement) {
+            timeSinceWeMeetHoursElement.textContent = `${hours} Jam, ${minutes} Menit, ${seconds} Detik`;
+          }
+        }
+
+        // Initial update
+        updateTimeSinceMeet();
+
+        // Update every second for live countdown
+        setInterval(updateTimeSinceMeet, 1000);
+      });
+    </script>
+  </body>
+</html>
