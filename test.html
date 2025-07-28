@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Universe</title>
+    <style>
+      /* CSS existing Anda, ditambahkan dengan style baru untuk elemen interaktif */
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+      /* ... (CSS lain dari kode asli Anda) */
+
+      /* CSS baru untuk gambar buku interaktif */
+      .interactive-book {
+        text-align: center;
+        margin: 20px 0;
+      }
+      .book-image {
+        width: 250px;
+        height: auto;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+      }
+      .book-image:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px rgba(255, 105, 180, 0.7); /* Efek glow romantis */
+      }
+      @media (max-width: 600px) {
+        .book-image {
+          width: 100%;
+        } /* Responsif untuk mobile */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigasi existing -->
+    <nav>
+      <ul>
+        <li><a href="#">🏠 BERANDA</a></li>
+        <li><a href="#">📸 GALERI</a></li>
+        <li><a href="#">💭 KENANGAN</a></li>
+        <li><a href="#">🎯 BUCKET LIST</a></li>
+      </ul>
+    </nav>
+
+    <!-- Konten utama existing -->
+    <main>
+      <!-- Galeri dan elemen lain -->
+      <section class="gallery">
+        <!-- ... (Konten galeri existing Anda) -->
+      </section>
+
+      <!-- Penambahan baru: Bagian interaktif gambar buku 2D -->
+      <section class="interactive-book">
+        <h2>Buku Kenangan Kami ✨</h2>
+        <p>Klik buku ini untuk membuka flipbook cerita cinta kita!</p>
+        <a
+          href="https://your-flipbook-url.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Buka Flipbook Romantis"
+        >
+          <img
+            src="path/to/your-book-image.png"
+            alt="Gambar buku 2D kenangan cinta link ke flipbook interaktif"
+            class="book-image"
+          />
+        </a>
+      </section>
+
+      <!-- Footer dan elemen lain existing -->
+      <footer>
+        <p>✨ Made with infinite love and countless coffee ✨</p>
+        <p>© 2025 Our Universe. Every pixel crafted with ❤️</p>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kenangan - Our Universe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Dancing+Script:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#ff6b9d",
+              secondary: "#a8e6cf",
+              accent: "#ffd93d",
+              dark: "#2d3748",
+              light: "#f7fafc",
+              gradient1: "#667eea",
+              gradient2: "#764ba2",
+              gradient3: "#f093fb",
+              gradient4: "#f5576c",
+            },
+            fontFamily: {
+              poppins: ["Poppins", "sans-serif"],
+              dancing: ["Dancing Script", "cursive"],
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0px)" },
+                "50%": { transform: "translateY(-20px)" },
+              },
+              slideInLeft: {
+                "0%": { transform: "translateX(-100px)", opacity: "0" },
+                "100%": { transform: "translateX(0)", opacity: "1" },
+              },
+              slideInRight: {
+                "0%": { transform: "translateX(100px)", opacity: "0" },
+                "100%": { transform: "translateX(0)", opacity: "1" },
+              },
+              fadeInUp: {
+                "0%": { transform: "translateY(50px)", opacity: "0" },
+                "100%": { transform: "translateY(0)", opacity: "1" },
+              },
+            },
+            animation: {
+              float: "float 6s ease-in-out infinite",
+              slideInLeft: "slideInLeft 0.8s ease-out",
+              slideInRight: "slideInRight 0.8s ease-out",
+              fadeInUp: "fadeInUp 0.8s ease-out",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .gradient-bg {
+        background: linear-gradient(135deg, #667eea 0%, #d73dc2 100%);
+      }
+
+      .memory-card {
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.95) 0%,
+          rgba(255, 255, 255, 0.8) 100%
+        );
+        backdrop-filter: blur(20px);
+        transition: all 0.4s ease;
+      }
+
+      .memory-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: linear-gradient(to bottom, #ff6b9d, #a8e6cf, #ffd93d);
+        transform: translateX(-50%);
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 2rem;
+        width: 20px;
+        height: 20px;
+        background: #ff6b9d;
+        border: 4px solid white;
+        border-radius: 50%;
+        transform: translateX(-50%);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .timeline-item:nth-child(even)::before {
+        background: #a8e6cf;
+      }
+
+      .timeline-item:nth-child(3n)::before {
+        background: #ffd93d;
+      }
+    </style>
+  </head>
+  <body class="font-poppins gradient-bg min-h-screen">
+    <!-- Header -->
+    <header class="relative py-8 px-4">
+      <div class="max-w-6xl mx-auto">
+        <!-- Logo Section -->
+        <div class="text-center mb-8">
+          <div class="relative inline-block">
+            <div
+              class="absolute -inset-4 bg-gradient-to-r from-primary to-accent rounded-full blur opacity-30 animate-pulse"
+            ></div>
+            <div class="relative bg-white rounded-full p-4 shadow-2xl">
+              <h1
+                class="font-dancing text-3xl md:text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
+              >
+                💭 Timeline Kita
+              </h1>
+              <p class="font-poppins text-gray-600 text-sm mt-2">
+                How it start and how i feel
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="glass-effect rounded-3xl p-4 shadow-2xl">
+          <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+            <a
+              href="index.html"
+              class="group relative px-4 py-2 text-white font-medium transition-all duration-300 hover:scale-110"
+            >
+              <div
+                class="absolute inset-0 bg-white rounded-xl opacity-0 group-hover:opacity-20 transition-opacity"
+              ></div>
+              <span class="relative">🏠 BERANDA</span>
+            </a>
+            <a
+              href="gallery.html"
+              class="group relative px-4 py-2 text-white font-medium transition-all duration-300 hover:scale-110"
+            >
+              <div
+                class="absolute inset-0 bg-white rounded-xl opacity-0 group-hover:opacity-20 transition-opacity"
+              ></div>
+              <span class="relative">📸 GALERI</span>
+            </a>
+            <a
+              href="#"
+              class="group relative px-4 py-2 text-white font-medium bg-white/20 rounded-xl"
+            >
+              <span class="relative">💭 TIMELINE</span>
+            </a>
+            <a
+              href="tetris.html"
+              class="group relative px-4 py-2 text-white font-medium transition-all duration-300 hover:scale-110"
+            >
+              <div
+                class="absolute inset-0 bg-white rounded-xl opacity-0 group-hover:opacity-20 transition-opacity"
+              ></div>
+              <span class="relative">🎮 MINI GAME</span>
+            </a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="px-4 py-8">
+      <div class="max-w-6xl mx-auto">
+        <!-- Timeline Section -->
+        <div class="relative timeline">
+          <!-- Memory Item 1 -->
+          <div class="timeline-item relative mb-16 animate-slideInLeft">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+              <div class="md:text-right">
+                <div class="memory-card rounded-3xl p-8 shadow-2xl">
+                  <h3
+                    class="font-dancing text-3xl font-bold text-gray-800 mb-4"
+                  >
+                    Pertemuan Pertama
+                  </h3>
+                  <p class="text-gray-600 mb-4 leading-relaxed">
+                    Semuanya bermula di masa orientasi kampus, Mokaku UPI Cibiru
+                    2023. Di tengah kesibukan kerja kelompok, takdir
+                    mempertemukan kita dalam satu tim. Sebagai ketua, aku
+                    memberanikan diri memulai percakapan lewat chat untuk
+                    membahas tugas-tugas. Dari situlah, benih-benih interaksi
+                    pertama kita tertanam, perlahan membuka jalan menuju
+                    kedekatan yang tak terduga.
+                  </p>
+                </div>
+              </div>
+              <div class="hidden md:block"></div>
+            </div>
+          </div>
+
+          <!-- Memory Item 2 -->
+          <div
+            class="timeline-item relative mb-16 animate-slideInRight"
+            style="animation-delay: 0.2s"
+          >
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+              <div class="hidden md:block"></div>
+              <div class="md:text-left">
+                <div class="memory-card rounded-3xl p-8 shadow-2xl">
+                  <h3
+                    class="font-dancing text-3xl font-bold text-gray-800 mb-4"
+                  >
+                    Jalan-jalan Pertama
+                  </h3>
+                  <p class="text-gray-600 mb-4 leading-relaxed">
+                    Setelah Mokaku berlalu, kedekatan kita terasa semakin nyata.
+                    Obrolan tentang tugas mulai diselingi canda tawa dan
+                    percakapan yang lebih personal. Ada sesuatu dalam diri kamu
+                    yang menarik perhatianku. Keinginan Kamu untuk pergi ke
+                    perpustakaan menjadi alasan yang tepat bagiku untuk mengajak
+                    kamu. Meskipun rencana awal gagal karena perpustakaan tutup,
+                    takdir membawa kami ke Museum Geologi Bandung. Di tengah
+                    dinginnya artefak sejarah, kehangatan obrolan kita terasa
+                    begitu menyenangkan. Kesenangan itu berlanjut saat kita
+                    mengunjungi Museum Gedung Sate dan mencoba melukis bersama
+                    membuat lukisan kupu kupu yang masih kamu pajang sampai
+                    sekarang. Esok harinya, di hari ulang tahunku kamu memberiku
+                    hadiah sebuah lukisan. aku langsung terharu, gak menyangka
+                    kamu akan memberikan perhatian sebesar itu sehingga persaaan
+                    aku semakin dalam ke kamu.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Memory Item 3 -->
+          <div
+            class="timeline-item relative mb-16 animate-slideInLeft"
+            style="animation-delay: 0.4s"
+          >
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+              <div class="md:text-right">
+                <div class="memory-card rounded-3xl p-8 shadow-2xl">
+                  <h3
+                    class="font-dancing text-3xl font-bold text-gray-800 mb-4"
+                  >
+                    Main ke Kiara
+                  </h3>
+                  <p class="text-gray-600 mb-4 leading-relaxed">
+                    Kesan manis dari jalan jalan pertama membuat aku ingin lebih
+                    banyak menghabiskan waktu bersama kamu. Tak lama kemudian,
+                    aku mengajak kamu untuk kencan kedua di Kiara Artha Park. Di
+                    sana, kita menyewa sepeda, berbagi tawa sambil jajan ringan,
+                    dan menutupnya dengan es krim di McD. Momen-momen sederhana
+                    itu terasa begitu istimewa sampai sekarang.
+                  </p>
+                </div>
+              </div>
+              <div class="hidden md:block"></div>
+            </div>
+          </div>
+
+          <!-- Memory Item 4 -->
+          <div
+            class="timeline-item relative mb-16 animate-slideInRight"
+            style="animation-delay: 0.6s"
+          >
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+              <div class="hidden md:block"></div>
+              <div class="md:text-left">
+                <div class="memory-card rounded-3xl p-8 shadow-2xl">
+                  <h3
+                    class="font-dancing text-3xl font-bold text-gray-800 mb-4"
+                  >
+                    Confession
+                  </h3>
+                  <p class="text-gray-600 mb-4 leading-relaxed">
+                    Setelah beberapa kali kita jalan, aku mulai mengumpulkan
+                    seluruh keberanian untuk mengungkapkan perasaanku, untuk
+                    confess bahwa aku suka kamu. Meskipun bukan status resmi
+                    yang kuharapkan, ada harapan dalam jawaban yang membuat aku
+                    semakin ingin perjuangkan kamu. sehingga sampai saat ini
+                    kita masih tetap bersama.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Memory Item 5 -->
+          <div
+            class="timeline-item relative mb-16 animate-slideInLeft"
+            style="animation-delay: 0.8s"
+          >
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+              <div class="md:text-right">
+                <div class="memory-card rounded-3xl p-8 shadow-2xl">
+                  <h3
+                    class="font-dancing text-3xl font-bold text-gray-800 mb-4"
+                  >
+                    Hari-Hari Bersama
+                  </h3>
+                  <p class="text-gray-600 mb-4 leading-relaxed">
+                    Sejak saat itu, hari-hari kita diwarnai dengan kebersamaan.
+                    Kita sering menjelajahi Bandung, mencari tempat makan enak,
+                    dan menikmati jajanan kaki lima. Aku juga sering berkunjung
+                    ke rumah kamu di Jatinangor, sekedar untuk menjemput ataupun
+                    berkunjung. Bahkan saat kamu pindah kos ke Cibiru, aku
+                    dengan senang hati ingin membantu semua kebutuhan kamu
+                    disitu, karena bersama kamu rasanya aku selalu bahagia.
+                  </p>
+                </div>
+              </div>
+              <div class="hidden md:block"></div>
+            </div>
+          </div>
+
+          <div
+            class="timeline-item relative mb-16 animate-slideInRight"
+            style="animation-delay: 1s"
+          >
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+              <div class="hidden md:block"></div>
+              <div class="md:text-left">
+                <div class="memory-card rounded-3xl p-8 shadow-2xl">
+                  <h3
+                    class="font-dancing text-3xl font-bold text-gray-800 mb-4"
+                  >
+                    Momen Paling Berharga
+                  </h3>
+                  <p class="text-gray-600 mb-4 leading-relaxed">
+                    Di antara semua momen yang kita lalui, main di Trans Studio
+                    Bandung jadi salah satu yang paling tak terlupakan. Untuk
+                    pertama kalinya, kita menjelajahi setiap wahana, merasakan
+                    adrenalin yang memacu, dan tawa yang tak henti-hentinya.
+                    Rasanya seperti mimpi yang menjadi nyata, sebuah experience
+                    yang tak akan pernah bisa kulupakan. Selain itu aku juga
+                    masih sangat ingat momen dimana aku ulang tahun, rasanya
+                    walaupun satu dunia tidak ingat akan ulang tajunku, asal
+                    kamu merayanaknnya sama aku, aku ga peduli. Karena kamu
+                    duniaku naaa, terimakasih yaaa
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Memory Item 5 -->
+          <div
+            class="timeline-item relative mb-16 animate-slideInLeft"
+            style="animation-delay: 0.8s"
+          >
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+              <div class="md:text-right">
+                <div class="memory-card rounded-3xl p-8 shadow-2xl">
+                  <h3
+                    class="font-dancing text-3xl font-bold text-gray-800 mb-4"
+                  >
+                    Sebuah Rasa Syukur dan Harapan
+                  </h3>
+                  <p class="text-gray-600 mb-4 leading-relaxed">
+                    Mungkin aku tak bisa merinci setiap detail, setiap tempat
+                    yang kita kunjungi, atau setiap tawa yang kita bagi.
+                    Perjalanan kita begitu kaya, dan terlalu banyak untuk
+                    diuraikan satu per satu. Namun, satu hal yang pasti, setiap
+                    momen yang telah kita lalui bersama, setiap jejak langkah
+                    yang kita ukir, semuanya sangatlah berharga bagiku. Itu
+                    adalah kenangan yang takkan pernah bisa tergantikan. Aku
+                    sangat bersyukur bisa bersamamu, Najwa. Aku tahu, kadang aku
+                    masih sering membuatmu marah, seringkali tak sengaja
+                    membuatmu kecewa. Aku berjanji, aku akan terus berusaha
+                    menjadi pribadi yang lebih baik untukmu di masa depan. Aku
+                    berharap bisa menjadi sosok yang selalu bisa
+                    membahagiakanmu, yang selalu ada di sampingmu. Semoga, kita
+                    bisa selalu bersama, sampai selamanya.
+                  </p>
+                </div>
+              </div>
+              <div class="hidden md:block"></div>
+            </div>
+          </div>
+          <!-- Memory Item 6 -->
+        </div>
+
+        <!-- Quote Section -->
+        <div
+          class="mt-16 text-center animate-fadeInUp"
+          style="animation-delay: 1.2s"
+        >
+          <div class="glass-effect rounded-3xl p-12 max-w-4xl mx-auto">
+            <div class="text-6xl mb-6 animate-float">💖</div>
+            <blockquote
+              class="font-dancing text-4xl md:text-5xl font-bold text-white mb-6 leading-relaxed"
+            >
+              "Setiap kenangan bersamamu adalah harta yang tak ternilai"
+            </blockquote>
+            <p class="text-white/80 text-lg">
+              i love you today, tomorow, and the rest of my life
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-12 mt-16">
+      <div class="glass-effect rounded-3xl p-6 max-w-2xl mx-auto">
+        <p class="text-white font-medium mb-2">
+          Kenangan adalah jembatan yang menghubungkan masa lalu dengan masa
+          depan
+        </p>
+        <p class="text-white/70 text-sm">&copy; 2025 Aan. Made with love ❤️</p>
+      </div>
+    </footer>
+
+    <script>
+      // Add scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("opacity-100");
+            entry.target.classList.remove("opacity-0");
+          }
+        });
+      }, observerOptions);
+
+      // Observe all timeline items
+      document.querySelectorAll(".timeline-item").forEach((item) => {
+        observer.observe(item);
+      });
+
+      // Add Memory functionality
+      document.querySelector("button").addEventListener("click", () => {
+        alert(
+          "✨ Fitur tambah kenangan akan segera hadir! Tetap simpan momen indah kalian ya! 💕"
+        );
+      });
+    </script>
+  </body>
+</html>
